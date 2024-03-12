@@ -1,0 +1,187 @@
+{
+	"id": "cdcd0da4-404d-49b6-81e3-6fd7a4985acd",
+	"name": "Automation_Crunchyroll",
+	"timestamp": "2024-03-12T22:07:02.334Z",
+	"collection_id": "33565793-33552e3c-22be-416d-b926-48ce93faea18",
+	"folder_id": 0,
+	"environment_id": "33565793-fa3e1d74-0e6b-4d38-8c2c-c44ab896fcc3",
+	"totalPass": 15,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-03-12T22:06:59.587Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "16dbd9e3-dabe-41e4-ac11-e222b633eeb8",
+			"name": "Retrieve_people",
+			"url": "https://www.swapi.tech/api/people/1",
+			"time": 645,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"all fields are present": true,
+				"status code is 200 OK": true,
+				"Message is ok": true,
+				"Description, Id and uid values are returned": true,
+				"all field under properties values are returned": true
+			},
+			"testPassFailCounts": {
+				"all fields are present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Description, Id and uid values are returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"all field under properties values are returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				645
+			],
+			"allTests": [
+				{
+					"all fields are present": true,
+					"status code is 200 OK": true,
+					"Message is ok": true,
+					"Description, Id and uid values are returned": true,
+					"all field under properties values are returned": true
+				}
+			]
+		},
+		{
+			"id": "b43e55d7-82e1-44af-b76d-3fb1c310116e",
+			"name": "Retrieve_planets",
+			"url": "https://www.swapi.tech/api/planets/3",
+			"time": 746,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"all fields are present": true,
+				"status code is 200 OK": true,
+				"Message is ok": true,
+				"Description, Id and uid values are returned": true,
+				"all field under properties values are returned": true
+			},
+			"testPassFailCounts": {
+				"all fields are present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Description, Id and uid values are returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"all field under properties values are returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				746
+			],
+			"allTests": [
+				{
+					"all fields are present": true,
+					"status code is 200 OK": true,
+					"Message is ok": true,
+					"Description, Id and uid values are returned": true,
+					"all field under properties values are returned": true
+				}
+			]
+		},
+		{
+			"id": "3dea8f94-e46b-4b9a-bb4b-10a51078cf87",
+			"name": "Retrieve_starships",
+			"url": "https://www.swapi.tech/api/starships/9",
+			"time": 839,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"all fields are present": true,
+				"status code is 200 OK": true,
+				"Message is ok": true,
+				"Description, Id and uid values are returned": true,
+				"all field under properties values are returned": true
+			},
+			"testPassFailCounts": {
+				"all fields are present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status code is 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Description, Id and uid values are returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"all field under properties values are returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				839
+			],
+			"allTests": [
+				{
+					"all fields are present": true,
+					"status code is 200 OK": true,
+					"Message is ok": true,
+					"Description, Id and uid values are returned": true,
+					"all field under properties values are returned": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2230,
+	"collection": {
+		"requests": [
+			{
+				"id": "16dbd9e3-dabe-41e4-ac11-e222b633eeb8",
+				"method": "GET"
+			},
+			{
+				"id": "b43e55d7-82e1-44af-b76d-3fb1c310116e",
+				"method": "GET"
+			},
+			{
+				"id": "3dea8f94-e46b-4b9a-bb4b-10a51078cf87",
+				"method": "GET"
+			}
+		]
+	}
+}

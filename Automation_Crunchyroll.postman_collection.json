@@ -1,0 +1,729 @@
+{
+	"info": {
+		"_postman_id": "33552e3c-22be-416d-b926-48ce93faea18",
+		"name": "Automation_Crunchyroll",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33565793"
+	},
+	"item": [
+		{
+			"name": "Retrieve_people",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData=pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"message\",jsonData.message);\r",
+							"postman.setEnvironmentVariable(\"homeworld\",jsonData.result.properties.homeworld);\r",
+							"postman.setEnvironmentVariable(\"urlresponse\",jsonData.result.properties.url);\r",
+							"postman.setEnvironmentVariable(\"name\",jsonData.result.properties.name);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"description\",jsonData.result.description);\r",
+							"postman.setEnvironmentVariable(\"id\",jsonData.result._id);\r",
+							"postman.setEnvironmentVariable(\"uid\",jsonData.result.uid);\r",
+							"\r",
+							"pm.environment.set(\"TestName\",\"fetch_people_details\");\r",
+							"\r",
+							"//validation starts from here.\r",
+							"try{\r",
+							"\r",
+							"    pm.expect(jsonData).to.have.property(\"message\")\r",
+							"    pm.expect(jsonData).to.have.property(\"result\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"properties\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"height\");\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"mass\");\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"hair_color\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"skin_color\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"eye_color\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"birth_year\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"gender\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"created\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"edited\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"name\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"homeworld\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"url\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"description\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"_id\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"uid\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"__v\")\r",
+							"    pm.test(\"all fields are present\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"all fields are present\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"try{\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"    pm.test(\"status code is 200 OK\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"status code is not 200 OK\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"\r",
+							"try{\r",
+							"    pm.expect(jsonData.message).to.eql(\"ok\");\r",
+							"    pm.test(\"Message is ok\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"Message is not ok\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"try{\r",
+							"    pm.expect(jsonData.result.description).to.eql(pm.environment.get(\"description\"));\r",
+							"     pm.expect(jsonData.result._id).to.eql(pm.environment.get(\"id\"));\r",
+							"      pm.expect(jsonData.result.uid).to.eql(pm.environment.get(\"uid\"));\r",
+							"    \r",
+							"    pm.test(\"Description, Id and uid values are returned\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"Description, Id and uid values are not returned\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"try{\r",
+							"    pm.expect(jsonData.result.properties.height).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.mass).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.hair_color).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.skin_color).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.eye_color).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.birth_year).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.gender).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.created).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.edited).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.name).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.homeworld).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.url).not.to.eql(\"\" ||null)\r",
+							"\r",
+							"\r",
+							"    pm.test(\"all field under properties values are returned\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"all field under properties values are not returned\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/people/1",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"people",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Data_Validations",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/people/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"people",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 21:25:59 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1710278759&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=jpK%2Fl2g40qfVllW8o7xZcwKK9CghQnwfpXUw03M1Q4c%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1710278759&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=jpK%2Fl2g40qfVllW8o7xZcwKK9CghQnwfpXUw03M1Q4c%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "100"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "99"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "1710279496"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"1d0-/UR0w5/GE8NlOK7Z8K8BO21m1Ks\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "8636dc27d9986b19-DFW"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"ok\",\n    \"result\": {\n        \"properties\": {\n            \"height\": \"172\",\n            \"mass\": \"77\",\n            \"hair_color\": \"blond\",\n            \"skin_color\": \"fair\",\n            \"eye_color\": \"blue\",\n            \"birth_year\": \"19BBY\",\n            \"gender\": \"male\",\n            \"created\": \"2024-03-12T08:53:15.801Z\",\n            \"edited\": \"2024-03-12T08:53:15.801Z\",\n            \"name\": \"Luke Skywalker\",\n            \"homeworld\": \"https://www.swapi.tech/api/planets/1\",\n            \"url\": \"https://www.swapi.tech/api/people/1\"\n        },\n        \"description\": \"A person within the Star Wars universe\",\n        \"_id\": \"5f63a36eee9fd7000499be42\",\n        \"uid\": \"1\",\n        \"__v\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve_planets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData=pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"message\",jsonData.message);\r",
+							"postman.setEnvironmentVariable(\"gravity\",jsonData.result.properties.gravity);\r",
+							"postman.setEnvironmentVariable(\"population\",jsonData.result.properties.population);\r",
+							"postman.setEnvironmentVariable(\"climate\",jsonData.result.properties.climate);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"description_planet\",jsonData.result.description);\r",
+							"postman.setEnvironmentVariable(\"planet_id\",jsonData.result._id);\r",
+							"postman.setEnvironmentVariable(\"planet_uid\",jsonData.result.uid);\r",
+							"\r",
+							"pm.environment.set(\"TestName\",\"fetch_planets_details\");\r",
+							"\r",
+							"//validation starts from here.\r",
+							"try{\r",
+							"\r",
+							"    pm.expect(jsonData).to.have.property(\"message\")\r",
+							"    pm.expect(jsonData).to.have.property(\"result\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"properties\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"diameter\");\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"rotation_period\");\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"orbital_period\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"gravity\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"population\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"climate\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"terrain\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"surface_water\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"created\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"edited\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"name\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"url\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"description\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"_id\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"uid\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"__v\")\r",
+							"    pm.test(\"all fields are present\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"all fields are present\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"try{\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"    pm.test(\"status code is 200 OK\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"status code is not 200 OK\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"\r",
+							"try{\r",
+							"    pm.expect(jsonData.message).to.eql(\"ok\");\r",
+							"    pm.test(\"Message is ok\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"Message is not ok\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"try{\r",
+							"    pm.expect(jsonData.result.description).to.eql(pm.environment.get(\"description\"));\r",
+							"     pm.expect(jsonData.result._id).to.eql(pm.environment.get(\"id\"));\r",
+							"      pm.expect(jsonData.result.uid).to.eql(pm.environment.get(\"uid\"));\r",
+							"    \r",
+							"    pm.test(\"Description, Id and uid values are returned\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"Description, Id and uid values are not returned\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"try{\r",
+							"    pm.expect(jsonData.result.properties.diameter).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.rotation_period).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.orbital_period).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.gravity).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.population).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.climate).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.terrain).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.surface_water).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.created).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.edited).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.name).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.url).not.to.eql(\"\" ||null)\r",
+							"\r",
+							"\r",
+							"    pm.test(\"all field under properties values are returned\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"all field under properties values are not returned\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/planets/3",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"planets",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Retrieve_planets",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/planets/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"planets",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 21:39:01 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1710279541&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=yKKo%2BUa19SsVyQFGs7ukNsDCyJOrbjlkkKDmgTumThQ%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1710279541&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=yKKo%2BUa19SsVyQFGs7ukNsDCyJOrbjlkkKDmgTumThQ%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "100"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "98"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "1710280396"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"1c0-lLm7aoxc/RlMrnzXz6OHQ7HjheA\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "8636ef3d8a3e6b19-DFW"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"ok\",\n    \"result\": {\n        \"properties\": {\n            \"diameter\": \"10200\",\n            \"rotation_period\": \"24\",\n            \"orbital_period\": \"4818\",\n            \"gravity\": \"1 standard\",\n            \"population\": \"1000\",\n            \"climate\": \"temperate, tropical\",\n            \"terrain\": \"jungle, rainforests\",\n            \"surface_water\": \"8\",\n            \"created\": \"2024-03-12T08:53:15.804Z\",\n            \"edited\": \"2024-03-12T08:53:15.804Z\",\n            \"name\": \"Yavin IV\",\n            \"url\": \"https://www.swapi.tech/api/planets/3\"\n        },\n        \"description\": \"A planet.\",\n        \"_id\": \"5f7254c11b7dfa00041c6fb0\",\n        \"uid\": \"3\",\n        \"__v\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve_starships",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData=pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"message\",jsonData.message);\r",
+							"postman.setEnvironmentVariable(\"model\",jsonData.result.properties.model);\r",
+							"postman.setEnvironmentVariable(\"starship_class\",jsonData.result.properties.starship_class);\r",
+							"postman.setEnvironmentVariable(\"manufacturer\",jsonData.result.properties.manufacturer);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"cost_in_credits\",jsonData.result.properties.cost_in_credits);\r",
+							"postman.setEnvironmentVariable(\"length\",jsonData.result.properties.length);\r",
+							"postman.setEnvironmentVariable(\"crew\",jsonData.result.properties.crew);\r",
+							"postman.setEnvironmentVariable(\"passengers\",jsonData.result.properties.passengers);\r",
+							"postman.setEnvironmentVariable(\"max_atmosphering_speed\",jsonData.result.properties.max_atmosphering_speed);\r",
+							"postman.setEnvironmentVariable(\"hyperdrive_rating\",jsonData.result.properties.hyperdrive_rating);\r",
+							"postman.setEnvironmentVariable(\"MGLT\",jsonData.result.properties.MGLT);\r",
+							"postman.setEnvironmentVariable(\"cargo_capacity\",jsonData.result.properties.cargo_capacity);\r",
+							"postman.setEnvironmentVariable(\"consumables\",jsonData.result.properties.consumables);\r",
+							"postman.setEnvironmentVariable(\"created\",jsonData.result.properties.created);\r",
+							"postman.setEnvironmentVariable(\"edited\",jsonData.result.properties.edited);\r",
+							"postman.setEnvironmentVariable(\"name\",jsonData.result.properties.name);\r",
+							"postman.setEnvironmentVariable(\"starshipurl\",jsonData.result.properties.url);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"starships_description\",jsonData.result.description);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"starships_id\",jsonData.result._id);\r",
+							"postman.setEnvironmentVariable(\"starships_uid\",jsonData.result.uid);\r",
+							"\r",
+							"\r",
+							"pm.environment.set(\"TestName\",\"fetch_starships_details\");\r",
+							"\r",
+							"//validation starts from here.\r",
+							"try{\r",
+							"\r",
+							"    pm.expect(jsonData).to.have.property(\"message\")\r",
+							"    pm.expect(jsonData).to.have.property(\"result\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"properties\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"model\");\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"starship_class\");\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"manufacturer\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"cost_in_credits\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"length\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"crew\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"passengers\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"max_atmosphering_speed\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"hyperdrive_rating\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"MGLT\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"cargo_capacity\")\r",
+							"    pm.expect(jsonData.result.properties).to.have.property(\"consumables\")\r",
+							"        pm.expect(jsonData.result.properties).to.have.property(\"created\")\r",
+							"            pm.expect(jsonData.result.properties).to.have.property(\"edited\")\r",
+							"                      pm.expect(jsonData.result.properties).to.have.property(\"name\")\r",
+							"                                         pm.expect(jsonData.result.properties).to.have.property(\"url\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"description\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"_id\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"uid\")\r",
+							"    pm.expect(jsonData.result).to.have.property(\"__v\")\r",
+							"    pm.test(\"all fields are present\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"all fields are present\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"try{\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"    pm.test(\"status code is 200 OK\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"status code is not 200 OK\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"\r",
+							"try{\r",
+							"    pm.expect(jsonData.message).to.eql(\"ok\");\r",
+							"    pm.test(\"Message is ok\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"Message is not ok\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"try{\r",
+							"    pm.expect(jsonData.result.description).to.eql(pm.environment.get(\"starships_description\"));\r",
+							"     pm.expect(jsonData.result._id).to.eql(pm.environment.get(\"starships_id\"));\r",
+							"      pm.expect(jsonData.result.uid).to.eql(pm.environment.get(\"starships_uid\"));\r",
+							"    \r",
+							"    pm.test(\"Description, Id and uid values are returned\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"Description, Id and uid values are not returned\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							"\r",
+							"try{\r",
+							"    pm.expect(jsonData.result.properties.diameter).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.rotation_period).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.orbital_period).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.gravity).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.population).not.to.eql(\"\" ||null)\r",
+							"    pm.expect(jsonData.result.properties.climate).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.terrain).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.surface_water).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.created).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.edited).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.name).not.to.eql(\"\" ||null)\r",
+							"pm.expect(jsonData.result.properties.url).not.to.eql(\"\" ||null)\r",
+							"\r",
+							"\r",
+							"    pm.test(\"all field under properties values are returned\",() => true)\r",
+							"    pm.environment.set(\"TestResult\",\"Pass\")\r",
+							"} catch (e){\r",
+							"    pm.test(\"all field under properties values are not returned\",() => {throw new error(e)}\r",
+							"    )\r",
+							"pm.environment.set(\"TestResult\",\"Fail\")\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/starships/9",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"starships",
+						"9"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Retrieve_starships",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/starships/9",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"starships",
+								"9"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 21:54:24 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1710280464&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=6X%2BBThxGr%2BskQ0vMOeykx9j%2FbWh1JgdrlkZKn9qO8Xc%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1710280464&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=6X%2BBThxGr%2BskQ0vMOeykx9j%2FbWh1JgdrlkZKn9qO8Xc%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "100"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "98"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "1710281296"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"293-yI/GCDGJFPqh7GIYhh+SVQbVskY\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "863705c529774798-DFW"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"ok\",\n    \"result\": {\n        \"properties\": {\n            \"model\": \"DS-1 Orbital Battle Station\",\n            \"starship_class\": \"Deep Space Mobile Battlestation\",\n            \"manufacturer\": \"Imperial Department of Military Research, Sienar Fleet Systems\",\n            \"cost_in_credits\": \"1000000000000\",\n            \"length\": \"120000\",\n            \"crew\": \"342,953\",\n            \"passengers\": \"843,342\",\n            \"max_atmosphering_speed\": \"n/a\",\n            \"hyperdrive_rating\": \"4.0\",\n            \"MGLT\": \"10\",\n            \"cargo_capacity\": \"1000000000000\",\n            \"consumables\": \"3 years\",\n            \"pilots\": [],\n            \"created\": \"2020-09-17T17:55:06.604Z\",\n            \"edited\": \"2020-09-17T17:55:06.604Z\",\n            \"name\": \"Death Star\",\n            \"url\": \"https://www.swapi.tech/api/starships/9\"\n        },\n        \"description\": \"A Starship\",\n        \"_id\": \"5f63a34fee9fd7000499be21\",\n        \"uid\": \"9\",\n        \"__v\": 0\n    }\n}"
+				}
+			]
+		}
+	]
+}
